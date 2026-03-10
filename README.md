@@ -7,7 +7,20 @@ This assignment evaluates your ability to:
 - write focused tests to reproduce a bug,
 - implement a minimal, reviewable fix.
 
-## What you will do
+---
+
+## Table of Contents
+
+1. [What You Will Do](#what-you-will-do)  
+2. [Constraints](#constraints)  
+3. [EXPLANATION.md](#explanationmd-required)  
+4. [Submission](#submission)  
+5. [Running Tests Locally](#running-tests-locally)  
+6. [Running Tests with Docker](#running-tests-with-docker)
+
+---
+
+## What You Will Do
 
 ### 1) Dockerfile (required)
 
@@ -15,21 +28,21 @@ Create a `Dockerfile` so the project can run the test suite in a non-interactive
 
 Requirements:
 
-- Your Docker image must run the test suite by default using npm test.
-- Ensure npm test works in a clean environment (Docker) without manual steps.
-- The build must install dependencies from package.json using npm install.
-- The image must run tests by default (use: `CMD ["npm", "test"]`).
+- Your Docker image must run the test suite by default using `npm test`.
+- Ensure `npm test` works in a clean environment (Docker) without manual steps.
+- The build must install dependencies from `package.json` using `npm install`.
+- The image must run tests by default (`CMD ["npm", "test"]`).
 
 ### 2) Pin dependencies (required)
 
-- Pin dependency versions in package.json (no ^ / ~; use exact x.y.z).
-- Do not commit lockfiles (package-lock.json, yarn.lock, pnpm-lock.yaml).
+- Pin dependency versions in `package.json` (no `^` / `~`; use exact `x.y.z`).
+- Do not commit lockfiles (`package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`).
 
 ### 3) README updates (required)
 
 Update this README to include:
 
-- how to run the tests locally,
+- how to run the tests locally,  
 - how to build and run tests with Docker.
 
 ### 4) Find + fix a bug (required)
@@ -42,42 +55,50 @@ Your tasks:
 - Apply the smallest possible fix to make the tests pass.
 - Keep the change minimal and reviewable (no refactors).
 
+---
+
 ## Constraints
 
-- Keep changes minimal and reviewable.
-- Do not refactor unrelated code.
-- Do not introduce extra tooling unless required.
+- Keep changes minimal and reviewable.  
+- Do not refactor unrelated code.  
+- Do not introduce extra tooling unless required.  
 - You may add tests and the smallest code change needed to fix the bug.
 
-### 5) EXPLANATION.md (required)
+---
+
+## EXPLANATION.md (required)
 
 Create `EXPLANATION.md` (max 250 words) containing:
 
-- **What was the bug?**
-- **Why did it happen?**
-- **Why does your fix solve it?**
+- **What was the bug?**  
+- **Why did it happen?**  
+- **Why does your fix solve it?**  
 - **One realistic case / edge case your tests still don’t cover**
+
+---
 
 ## Submission
 
-- Submit a public GitHub repository URL containing your solution to the Google form link provided.
+- Submit a public GitHub repository URL containing your solution via the provided Google Form.
 
-## Running tests locally
+---
 
-1. Install dependencies: `npm install`
+## Running Tests Locally
+
+1. Install dependencies: `npm install`  
 2. Run tests: `npm test`
 
-## Running tests with Docker
+---
+
+## Running Tests with Docker
 
 ### Option 1: Using Docker commands
 
-1. Build the Docker image: `docker build -t js-ts-assignment .`
+1. Build the Docker image: `docker build -t js-ts-assignment .`  
 2. Run the tests: `docker run --rm js-ts-assignment`
 
 ### Option 2: Using npm script (single command)
 
-
 ```bash
 npm run docker
 ```
-You can also run the Docker build and test in a single command using npm:
