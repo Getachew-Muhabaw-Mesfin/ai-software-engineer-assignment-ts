@@ -7,7 +7,8 @@
     "test": "vitest --run",
     "docker:build": "docker build -t js-ts-assignment .",
     "docker:run": "docker run --rm js-ts-assignment",
-    "docker": "npm run docker:build && npm run docker:run"
+    "docker": "npm run docker:build && npm run docker:run",
+    "build": "tsc"
   },
   "devDependencies": {
     "typescript": "5.2.2",
@@ -15,12 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MoeYasir/ai-software-engineer-assignment-ts.git"
+    "url": "git+https://github.com/Getachew-Muhabaw-Mesfin/ai-software-engineer-assignment-ts.git"
   },
-  "author": "Getachew Muhabaw",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MoeYasir/ai-software-engineer-assignment-ts/issues"
+    "url": "https://github.com/Getachew-Muhabaw-Mesfin/ai-software-engineer-assignment-ts/issues"
   },
-  "homepage": "https://github.com/MoeYasir/ai-software-engineer-assignment-ts#readme"
+  "homepage": "https://github.com/Getachew-Muhabaw-Mesfin/ai-software-engineer-assignment-ts#readme"
 }
