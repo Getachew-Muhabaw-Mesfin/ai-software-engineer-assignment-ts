@@ -1,5 +1,21 @@
 import { OAuth2Token } from "./tokens";
+
 export type TokenState = OAuth2Token | Record<string, unknown> | null;
+
+type TokenLike = {
+  accessToken: string;
+  expiresAt: number;
+};
+
+function isTokenLike(token: TokenState): token is TokenLike {
+  if (!token || typeof token !== "object") return false;
+
+  const obj = token as Record<string, unknown>;
+
+  return (
+    typeof obj.accessToken === "string" && typeof obj.expiresAt === "number"
+  );
+}
 
 export class HttpClient {
   oauth2Token: TokenState = null;
@@ -17,27 +33,17 @@ export class HttpClient {
     const headers = opts?.headers ?? {};
 
     if (api) {
-      // Determine if token needs refresh
       let shouldRefresh = false;
+
       if (!this.oauth2Token) {
         shouldRefresh = true;
+      } else if (this.oauth2Token instanceof OAuth2Token) {
+        shouldRefresh = this.oauth2Token.expired;
+      } else if (isTokenLike(this.oauth2Token)) {
+        const now = Math.floor(Date.now() / 1000);
+        shouldRefresh = now >= this.oauth2Token.expiresAt;
       } else {
-        // Check if token is expired
-        let expired = false;
-        if (this.oauth2Token instanceof OAuth2Token) {
-          expired = this.oauth2Token.expired;
-        } else if (
-          typeof this.oauth2Token === "object" &&
-          this.oauth2Token !== null &&
-          "expiresAt" in this.oauth2Token
-        ) {
-          const now = Math.floor(Date.now() / 1000);
-          expired = now >= (this.oauth2Token as any).expiresAt;
-        } else {
-          // Not a recognizable token, treat as expired to be safe
-          expired = true;
-        }
-        shouldRefresh = expired;
+        shouldRefresh = true;
       }
 
       if (shouldRefresh) {
@@ -46,6 +52,8 @@ export class HttpClient {
 
       if (this.oauth2Token instanceof OAuth2Token) {
         headers["Authorization"] = this.oauth2Token.asHeader();
+      } else if (isTokenLike(this.oauth2Token)) {
+        headers["Authorization"] = `Bearer ${this.oauth2Token.accessToken}`;
       }
     }
 

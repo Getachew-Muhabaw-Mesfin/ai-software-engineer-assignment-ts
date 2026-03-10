@@ -69,5 +69,15 @@ Create `EXPLANATION.md` (max 250 words) containing:
 
 ## Running tests with Docker
 
+### Option 1: Using Docker commands
+
 1. Build the Docker image: `docker build -t js-ts-assignment .`
 2. Run the tests: `docker run --rm js-ts-assignment`
+
+### Option 2: Using npm script (single command)
+
+
+```bash
+npm run docker
+```
+You can also run the Docker build and test in a single command using npm:

@@ -4,7 +4,10 @@
   "description": "This is for job AI Training Software Engineer - JavaScript/TypeScript",
   "type": "module",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest --run",
+    "docker:build": "docker build -t js-ts-assignment .",
+    "docker:run": "docker run --rm js-ts-assignment",
+    "docker": "npm run docker:build && npm run docker:run"
   },
   "devDependencies": {
     "typescript": "5.2.2",
